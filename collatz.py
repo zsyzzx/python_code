@@ -13,7 +13,13 @@ def collatz(number):
         print (number*3+1)
         return number*3+1
 
+flag = True
 print("请输入数字:")
-temp = int(input())
+while flag:
+    try:
+        temp = int(input())
+        flag = False
+    except ValueError:
+        print("必须要输入一个整数")
 while temp != 1:
     temp = collatz(temp)
