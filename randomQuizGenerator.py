@@ -41,8 +41,7 @@ for quizNum in range(35):
     #     创建50份题目与答案选项
     for questionNum in range(50):
 
-        correctAnswer = capitals[states[questionNum]] #保存正确答案
-        # 生成选项
+        correctAnswer = capitals[states[questionNum]]
         wrongAnswer = list(capitals.values())
         del wrongAnswer[wrongAnswer.index(correctAnswer)]
         wrongAnswers = random.sample(wrongAnswer, 3)
