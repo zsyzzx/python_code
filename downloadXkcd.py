@@ -4,8 +4,9 @@
 
 import requests, bs4, os
 
-url = "https://xkcd.com/"
-# url = "https://xkcd.com/3/"
+url = "https://xkcd.com/3"
+# url = "https://xkcd.com/"
+
 
 os.makedirs("xkcd", exist_ok=True)
 
@@ -27,11 +28,14 @@ while not url.endswith('#'):
         print('Downloading image%s....' % comicUrl)
         res_img = requests.get(comicUrl)
         res_img.raise_for_status()
+
+        # 保存图片文件
         imageFile = open(os.path.join('xkcd', os.path.basename(comicUrl)), 'wb')
         for chunk in res_img.iter_content(100000):
             imageFile.write(chunk)
         imageFile.close()
 
+    # 得到下一个页面的连接
     preLink = soup.select('a[rel="prev"]')[0]
     url = 'https://xkcd.com' + preLink.get('href')
 print("done")
