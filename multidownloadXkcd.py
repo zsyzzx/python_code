@@ -33,12 +33,15 @@ def downloadXkcd(startComic, endComic):
             imageFile.close()
 
 
+# 多线程代码
 downloadThreads = []
+# 创建线程
 for i in range(0, 1900, 100):
     downloadThread = threading.Thread(target=downloadXkcd, args=(i, i + 99))
     downloadThreads.append(downloadThread)
     downloadThread.start()
 
+# 等待子线程结束
 for downloadThread in downloadThreads:
     downloadThread.join()
 
